@@ -118,14 +118,14 @@ export default function TiltMenuWrapper({ children }: { children: React.ReactNod
             transformOrigin: 'center 70%',
           }}
         >
-          {/* Hamburger — compact, top-right, mobile only */}
+          {/* Hamburger → X — compact, top-right, mobile only */}
           <button
             ref={hamburgerRef}
             className="border-border shadow-shadow rounded-base bg-main fixed top-3 right-3 z-50 hidden h-8 w-8 cursor-pointer items-center justify-center border-2 max-lg:flex"
-            onClick={openMenu}
-            aria-label="Open menu"
+            onClick={open ? closeMenu : openMenu}
+            aria-label={open ? 'Close menu' : 'Open menu'}
           >
-            <span className="hamburger-icon" />
+            <span className={`hamburger-icon ${open ? 'active' : ''}`} />
           </button>
 
           {children}
@@ -141,6 +141,7 @@ export default function TiltMenuWrapper({ children }: { children: React.ReactNod
           height: 2px;
           background-color: var(--main-foreground);
           border-radius: 1px;
+          transition: all 0.3s ease;
         }
         .hamburger-icon {
           position: relative;
@@ -153,6 +154,9 @@ export default function TiltMenuWrapper({ children }: { children: React.ReactNod
         }
         .hamburger-icon:before { top: -5px; }
         .hamburger-icon:after { top: 5px; }
+        .hamburger-icon.active { background-color: transparent; }
+        .hamburger-icon.active:before { top: 0; transform: rotate(45deg); }
+        .hamburger-icon.active:after { top: 0; transform: rotate(-45deg); }
 
         @media (min-width: 1024px) {
           #paper-window { overflow: visible !important; pointer-events: auto !important; }
