@@ -42,8 +42,8 @@ export default function RootLayout({
     <html suppressHydrationWarning lang="en">
       <body suppressHydrationWarning className={montserrat.className}>
         <ThemeProvider attribute="class" disableTransitionOnChange>
+          <Nav />
           <TiltMenuWrapper>
-            <Nav />
             <div className="text-foreground mx-auto w-[750px] max-w-full px-5 pt-28">
               {children}
               <Footer />
