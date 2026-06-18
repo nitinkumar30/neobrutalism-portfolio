@@ -15,8 +15,8 @@
   <img src="https://img.shields.io/github/stars/nitinkumar30/neobrutalism-portfolio?style=for-the-badge&logo=github" alt="GitHub Stars" />
 </p>
 
-🌐 **Live Demo:** [neobrutalism-portfolio.vercel.app](https://neobrutalism-portfolio.vercel.app/)
-🐙 **Source:** [github.com/nitinkumar30/neobrutalism-portfolio](https://github.com/nitinkumar30/neobrutalism-portfolio)
+🌐 **Live Demo:** [neobrutalism-portfolio-2-0.vercel.app](https://neobrutalism-portfolio-2-0.vercel.app/)
+🐙 **Source:** [github.com/nitinkumar30/neobrutalism-portfolio/edit/ham2.0](https://github.com/nitinkumar30/neobrutalism-portfolio/edit/ham2.0/)
 
 ---
 
