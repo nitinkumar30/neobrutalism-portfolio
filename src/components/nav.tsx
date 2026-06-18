@@ -1,8 +1,10 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
+import { Menu, X } from 'lucide-react'
 import { ThemeSwitcher } from './theme-switcher'
 import {
   Tooltip,
@@ -27,10 +29,12 @@ const links: { path: string; short: string; full: string }[] = [
 
 export default function Nav() {
   const path = usePathname()
+  const [open, setOpen] = useState(false)
 
   return (
     <div className="fixed top-5 left-0 z-50 flex w-full justify-center px-4">
-      <nav className="text-main-foreground border-border shadow-shadow rounded-base bg-main font-base mx-auto flex items-center justify-center gap-1 border-2 px-3 py-2 text-xs sm:gap-2 sm:px-4 sm:text-sm md:text-base lg:gap-3 lg:px-5 lg:text-lg">
+      {/* Desktop nav */}
+      <nav className="text-main-foreground border-border shadow-shadow rounded-base bg-main font-base mx-auto hidden items-center justify-center gap-1 border-2 px-3 py-2 text-xs sm:gap-2 sm:px-4 sm:text-sm md:text-base lg:flex lg:gap-3 lg:px-5 lg:text-lg">
         <TooltipProvider>
           {links.map((link) => (
             <Tooltip key={link.path}>
@@ -53,6 +57,41 @@ export default function Nav() {
         </TooltipProvider>
         <ThemeSwitcher />
       </nav>
+
+      {/* Mobile hamburger button */}
+      <div className="border-border shadow-shadow rounded-base bg-main flex w-full items-center justify-between border-2 px-3 py-2 lg:hidden">
+        <button
+          onClick={() => setOpen(!open)}
+          className="text-main-foreground cursor-pointer"
+          aria-label="Toggle menu"
+        >
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
+        <ThemeSwitcher />
+      </div>
+
+      {/* Mobile dropdown menu */}
+      {open && (
+        <div className="border-border shadow-shadow rounded-base bg-main absolute top-full left-4 right-4 mt-2 border-2 p-2 lg:hidden">
+          <div className="flex flex-col gap-1">
+            {links.map((link) => (
+              <Link
+                key={link.path}
+                className={clsx(
+                  'hover:bg-secondary-background rounded-base border-2 px-3 py-2 text-sm transition-colors',
+                  path === link.path
+                    ? 'border-border bg-secondary-background'
+                    : 'border-transparent',
+                )}
+                href={link.path}
+                onClick={() => setOpen(false)}
+              >
+                {link.full}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   )
 }
