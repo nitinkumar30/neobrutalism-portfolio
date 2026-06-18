@@ -4,6 +4,7 @@ import { useRef, useEffect, useState, useCallback } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
+import { X } from 'lucide-react'
 
 const navLinks: { path: string; label: string }[] = [
   { path: '/', label: 'Home' },
@@ -23,7 +24,7 @@ export default function TiltMenuWrapper({ children }: { children: React.ReactNod
   const path = usePathname()
   const [open, setOpen] = useState(false)
   const frontRef = useRef<HTMLDivElement>(null)
-  const hamburgerRef = useRef<HTMLDivElement>(null)
+  const hamburgerRef = useRef<HTMLButtonElement>(null)
   const offset = 1800
 
   const updateTransformOrigin = useCallback(() => {
@@ -46,7 +47,7 @@ export default function TiltMenuWrapper({ children }: { children: React.ReactNod
     document.body.style.overflow = 'hidden'
     if (hamburgerRef.current) {
       hamburgerRef.current.style.position = 'absolute'
-      hamburgerRef.current.style.top = window.scrollY + 30 + 'px'
+      hamburgerRef.current.style.top = window.scrollY + 12 + 'px'
     }
   }, [])
 
@@ -56,7 +57,7 @@ export default function TiltMenuWrapper({ children }: { children: React.ReactNod
     setTimeout(() => {
       if (hamburgerRef.current) {
         hamburgerRef.current.style.position = 'fixed'
-        hamburgerRef.current.style.top = '30px'
+        hamburgerRef.current.style.top = '12px'
       }
     }, 300)
   }, [])
@@ -65,21 +66,29 @@ export default function TiltMenuWrapper({ children }: { children: React.ReactNod
     <>
       {/* Paper-back nav panel — mobile only */}
       <div
-        className="fixed top-0 left-0 z-40 h-screen w-full hidden max-lg:block"
+        className="fixed top-0 left-0 z-40 h-screen w-full hidden max-lg:flex flex-col"
         style={{ backgroundColor: 'var(--main)' }}
       >
-        <nav className="px-8" style={{ padding: '120px 34px' }}>
-          <div className="close-btn block w-[45px] h-[34px] fixed top-[30px] left-[30px] cursor-pointer z-50"
+        <div className="flex items-center justify-between px-6 pt-5">
+          <span className="text-main-foreground text-lg font-bold">Navigation</span>
+          <button
             onClick={closeMenu}
-          />
+            className="border-border shadow-shadow rounded-base bg-secondary-background text-foreground flex h-9 w-9 cursor-pointer items-center justify-center border-2"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+        <nav className="flex-1 overflow-y-auto px-6 pt-8">
           {navLinks.map((link) => (
             <Link
               key={link.path}
               href={link.path}
               onClick={closeMenu}
               className={clsx(
-                'mb-6 block text-3xl no-underline transition-colors',
-                path === link.path ? 'text-foreground' : 'text-main-foreground/70 hover:text-foreground',
+                'border-border shadow-shadow rounded-base mb-3 block border-2 px-4 py-3 text-lg font-bold no-underline transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none',
+                path === link.path
+                  ? 'bg-secondary-background text-foreground'
+                  : 'bg-main text-main-foreground hover:bg-secondary-background hover:text-foreground',
               )}
             >
               {link.label}
@@ -92,7 +101,7 @@ export default function TiltMenuWrapper({ children }: { children: React.ReactNod
       <div
         id="paper-window"
         className={clsx(
-          'relative w-full min-h-screen overflow-x-hidden',
+          'relative w-full',
           open && 'max-lg:overflow-hidden max-lg:pointer-events-none',
         )}
         style={{ zIndex: open ? 50 : undefined }}
@@ -107,57 +116,43 @@ export default function TiltMenuWrapper({ children }: { children: React.ReactNod
           style={{
             transition: 'all 0.3s ease',
             transformOrigin: 'center 70%',
-            boxShadow: undefined,
           }}
         >
-          {/* Hamburger — mobile only */}
-          <div
+          {/* Hamburger — compact, top-right, mobile only */}
+          <button
             ref={hamburgerRef}
-            className="fixed top-[30px] left-[30px] z-50 w-[45px] h-[34px] cursor-pointer select-none hidden max-lg:block"
+            className="border-border shadow-shadow rounded-base bg-main fixed top-3 right-3 z-50 hidden h-8 w-8 cursor-pointer items-center justify-center border-2 max-lg:flex"
             onClick={openMenu}
+            aria-label="Open menu"
           >
-            <span className="hamburger-line" />
-          </div>
+            <span className="hamburger-icon" />
+          </button>
 
           {children}
         </div>
       </div>
 
       <style>{`
-        .hamburger-line,
-        .hamburger-line:before,
-        .hamburger-line:after {
+        .hamburger-icon,
+        .hamburger-icon:before,
+        .hamburger-icon:after {
           display: block;
-          width: 45px;
-          height: 6px;
+          width: 16px;
+          height: 2px;
           background-color: var(--main-foreground);
-          border-radius: 2px;
+          border-radius: 1px;
         }
-        .hamburger-line {
+        .hamburger-icon {
           position: relative;
         }
-        .hamburger-line:before,
-        .hamburger-line:after {
+        .hamburger-icon:before,
+        .hamburger-icon:after {
           content: '';
           position: absolute;
-        }
-        .hamburger-line:before { bottom: -14px; }
-        .hamburger-line:after { bottom: -28px; }
-
-        .close-btn:before,
-        .close-btn:after {
-          content: '';
-          position: absolute;
-          display: block;
-          width: 45px;
-          height: 6px;
-          top: 50%;
           left: 0;
-          background-color: #fff;
-          border-radius: 2px;
         }
-        .close-btn:before { transform: translateY(-50%) rotate(45deg); }
-        .close-btn:after { transform: translateY(-50%) rotate(-45deg); }
+        .hamburger-icon:before { top: -5px; }
+        .hamburger-icon:after { top: 5px; }
 
         @media (min-width: 1024px) {
           #paper-window { overflow: visible !important; pointer-events: auto !important; }
