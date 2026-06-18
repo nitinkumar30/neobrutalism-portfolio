@@ -29,12 +29,6 @@ const links: { path: string; short: string; full: string; icon: React.ReactNode 
   { path: '/publications', short: 'Pubs', full: 'Publications', icon: <FileText className="h-5 w-5" /> },
 ]
 
-const colors = [
-  'bg-red-500', 'bg-orange-500', 'bg-yellow-500', 'bg-lime-500',
-  'bg-emerald-500', 'bg-cyan-500', 'bg-blue-500', 'bg-indigo-500',
-  'bg-violet-500', 'bg-fuchsia-500', 'bg-rose-500',
-]
-
 const positions = [
   { x: -94, y: 17 }, { x: -85, y: 42 }, { x: -71, y: 64 },
   { x: -50, y: 81 }, { x: -26, y: 91 }, { x: 0, y: 95 },
@@ -72,17 +66,16 @@ export default function Nav() {
         <ThemeSwitcher />
       </nav>
 
-      {/* Mobile: colourful popup hamburger menu */}
+      {/* Mobile: neobrutalism popup hamburger menu */}
       <div className="flex w-full items-center lg:hidden">
         <nav className="menu relative mx-auto" style={{ width: 56, height: 56, fontSize: 26 }}>
           <input type="checkbox" className="menu-open" name="menu-open" id="menu-open" style={{ display: 'none' }} />
           <label
             htmlFor="menu-open"
-            className="menu-open-button border-border shadow-shadow flex cursor-pointer items-center justify-center rounded-full border-2"
+            className="menu-open-button bg-main text-main-foreground border-border shadow-shadow flex cursor-pointer items-center justify-center rounded-full border-2"
             style={{
               width: 56,
               height: 56,
-              background: '#ffd700',
               zIndex: 2,
               position: 'absolute' as const,
               top: 0,
@@ -90,28 +83,26 @@ export default function Nav() {
               transitionTimingFunction: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
               transitionDuration: '0.3s',
               transform: 'scale(1.1, 1.1) translate3d(0, 0, 0)',
-              boxShadow: '3px 3px 10px 0 rgba(178, 34, 34, 0.5)',
-              textShadow: '1px 1px 0 rgba(0, 0, 0, 0.12)',
             }}
           >
             <span className="lines line-1" style={{
               display: 'block', position: 'absolute', top: '50%', left: '50%',
               marginLeft: -14, marginTop: -1.5, width: 28, height: 3,
-              background: '#0000cc', borderRadius: '1em',
+              background: 'var(--main-foreground)', borderRadius: '1em',
               transition: 'transform 200ms',
               transform: 'translate3d(0, -7px, 0)',
             }} />
             <span className="lines line-2" style={{
               display: 'block', position: 'absolute', top: '50%', left: '50%',
               marginLeft: -14, marginTop: -1.5, width: 28, height: 3,
-              background: '#0000cc', borderRadius: '1em',
+              background: 'var(--main-foreground)', borderRadius: '1em',
               transition: 'transform 200ms',
               transform: 'translate3d(0, 0, 0)',
             }} />
             <span className="lines line-3" style={{
               display: 'block', position: 'absolute', top: '50%', left: '50%',
               marginLeft: -14, marginTop: -1.5, width: 28, height: 3,
-              background: '#0000cc', borderRadius: '1em',
+              background: 'var(--main-foreground)', borderRadius: '1em',
               transition: 'transform 200ms',
               transform: 'translate3d(0, 7px, 0)',
             }} />
@@ -123,8 +114,10 @@ export default function Nav() {
               href={link.path}
               className={clsx(
                 'menu-item',
-                'flex items-center justify-center rounded-full text-white no-underline',
-                colors[i % colors.length],
+                'bg-secondary-background text-foreground border-border shadow-shadow',
+                'flex items-center justify-center rounded-full border-2 no-underline',
+                'hover:bg-main hover:text-main-foreground',
+                'transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none',
               )}
               style={{
                 width: 44,
@@ -132,13 +125,8 @@ export default function Nav() {
                 position: 'absolute',
                 top: 6,
                 left: 6,
-                borderRadius: '100%',
-                color: '#ffffff',
-                transition: 'transform ease-out 200ms',
                 transitionDuration: '0.2s',
                 transform: 'translate3d(0, 0, 0)',
-                boxShadow: '3px 3px 10px 0 rgba(178, 34, 34, 0.5)',
-                textShadow: '1px 1px 0 rgba(0, 0, 0, 0.12)',
               }}
             >
               {link.icon}
@@ -151,9 +139,6 @@ export default function Nav() {
         </div>
 
         <style>{`
-          .menu-open-button:hover {
-            transform: scale(1.2, 1.2) translate3d(0, 0, 0) !important;
-          }
           #menu-open:checked + .menu-open-button {
             transition-timing-function: linear;
             transition-duration: 0.2s;
