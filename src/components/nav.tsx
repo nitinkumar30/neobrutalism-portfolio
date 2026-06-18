@@ -16,17 +16,17 @@ import {
 } from '@/components/ui/tooltip'
 
 const links: { path: string; short: string; full: string; icon: React.ReactNode }[] = [
-  { path: '/', short: 'Home', full: 'Home', icon: <Home className="h-4 w-4" /> },
-  { path: '/about', short: 'About', full: 'About', icon: <User className="h-4 w-4" /> },
-  { path: '/projects', short: 'Proj', full: 'Projects', icon: <FolderGit2 className="h-4 w-4" /> },
-  { path: '/experience', short: 'Exp', full: 'Experience', icon: <Briefcase className="h-4 w-4" /> },
-  { path: '/education', short: 'Edu', full: 'Education', icon: <GraduationCap className="h-4 w-4" /> },
-  { path: '/skills', short: 'Skills', full: 'Skills', icon: <Code2 className="h-4 w-4" /> },
-  { path: '/achievements', short: 'Awards', full: 'Achievements', icon: <Trophy className="h-4 w-4" /> },
-  { path: '/certifications', short: 'Certs', full: 'Certifications', icon: <Award className="h-4 w-4" /> },
-  { path: '/testimonials', short: 'Reviews', full: 'Testimonials', icon: <MessageSquare className="h-4 w-4" /> },
-  { path: '/recommendations', short: 'Recs', full: 'Recommendations', icon: <ThumbsUp className="h-4 w-4" /> },
-  { path: '/publications', short: 'Pubs', full: 'Publications', icon: <FileText className="h-4 w-4" /> },
+  { path: '/', short: 'Home', full: 'Home', icon: <Home className="h-5 w-5" /> },
+  { path: '/about', short: 'About', full: 'About', icon: <User className="h-5 w-5" /> },
+  { path: '/projects', short: 'Proj', full: 'Projects', icon: <FolderGit2 className="h-5 w-5" /> },
+  { path: '/experience', short: 'Exp', full: 'Experience', icon: <Briefcase className="h-5 w-5" /> },
+  { path: '/education', short: 'Edu', full: 'Education', icon: <GraduationCap className="h-5 w-5" /> },
+  { path: '/skills', short: 'Skills', full: 'Skills', icon: <Code2 className="h-5 w-5" /> },
+  { path: '/achievements', short: 'Awards', full: 'Achievements', icon: <Trophy className="h-5 w-5" /> },
+  { path: '/certifications', short: 'Certs', full: 'Certifications', icon: <Award className="h-5 w-5" /> },
+  { path: '/testimonials', short: 'Reviews', full: 'Testimonials', icon: <MessageSquare className="h-5 w-5" /> },
+  { path: '/recommendations', short: 'Recs', full: 'Recommendations', icon: <ThumbsUp className="h-5 w-5" /> },
+  { path: '/publications', short: 'Pubs', full: 'Publications', icon: <FileText className="h-5 w-5" /> },
 ]
 
 const colors = [
@@ -36,10 +36,10 @@ const colors = [
 ]
 
 const positions = [
-  { x: -108, y: 19 }, { x: -99, y: 48 }, { x: -82, y: 74 },
-  { x: -58, y: 93 }, { x: -30, y: 106 }, { x: 0, y: 110 },
-  { x: 30, y: 106 }, { x: 58, y: 93 }, { x: 82, y: 74 },
-  { x: 99, y: 48 }, { x: 108, y: 19 },
+  { x: -94, y: 17 }, { x: -85, y: 42 }, { x: -71, y: 64 },
+  { x: -50, y: 81 }, { x: -26, y: 91 }, { x: 0, y: 95 },
+  { x: 26, y: 91 }, { x: 50, y: 81 }, { x: 71, y: 64 },
+  { x: 85, y: 42 }, { x: 94, y: 17 },
 ]
 
 export default function Nav() {
@@ -74,14 +74,14 @@ export default function Nav() {
 
       {/* Mobile: colourful popup hamburger menu */}
       <div className="flex w-full items-center lg:hidden">
-        <nav className="menu relative mx-auto" style={{ width: 70, height: 70, fontSize: 26 }}>
+        <nav className="menu relative mx-auto" style={{ width: 56, height: 56, fontSize: 26 }}>
           <input type="checkbox" className="menu-open" name="menu-open" id="menu-open" style={{ display: 'none' }} />
           <label
             htmlFor="menu-open"
             className="menu-open-button border-border shadow-shadow flex cursor-pointer items-center justify-center rounded-full border-2"
             style={{
-              width: 70,
-              height: 70,
+              width: 56,
+              height: 56,
               background: '#ffd700',
               zIndex: 2,
               position: 'absolute' as const,
@@ -96,24 +96,24 @@ export default function Nav() {
           >
             <span className="lines line-1" style={{
               display: 'block', position: 'absolute', top: '50%', left: '50%',
-              marginLeft: -17, marginTop: -1, width: 35, height: 4,
+              marginLeft: -14, marginTop: -1.5, width: 28, height: 3,
               background: '#0000cc', borderRadius: '1em',
               transition: 'transform 200ms',
-              transform: 'translate3d(0, -9px, 0)',
+              transform: 'translate3d(0, -7px, 0)',
             }} />
             <span className="lines line-2" style={{
               display: 'block', position: 'absolute', top: '50%', left: '50%',
-              marginLeft: -17, marginTop: -1, width: 35, height: 4,
+              marginLeft: -14, marginTop: -1.5, width: 28, height: 3,
               background: '#0000cc', borderRadius: '1em',
               transition: 'transform 200ms',
               transform: 'translate3d(0, 0, 0)',
             }} />
             <span className="lines line-3" style={{
               display: 'block', position: 'absolute', top: '50%', left: '50%',
-              marginLeft: -17, marginTop: -1, width: 35, height: 4,
+              marginLeft: -14, marginTop: -1.5, width: 28, height: 3,
               background: '#0000cc', borderRadius: '1em',
               transition: 'transform 200ms',
-              transform: 'translate3d(0, 9px, 0)',
+              transform: 'translate3d(0, 7px, 0)',
             }} />
           </label>
 
@@ -123,15 +123,15 @@ export default function Nav() {
               href={link.path}
               className={clsx(
                 'menu-item',
-                'flex flex-col items-center justify-center rounded-full text-white no-underline',
+                'flex items-center justify-center rounded-full text-white no-underline',
                 colors[i % colors.length],
               )}
               style={{
-                width: 52,
-                height: 52,
+                width: 44,
+                height: 44,
                 position: 'absolute',
-                top: 9,
-                left: 9,
+                top: 6,
+                left: 6,
                 borderRadius: '100%',
                 color: '#ffffff',
                 transition: 'transform ease-out 200ms',
@@ -141,13 +141,12 @@ export default function Nav() {
                 textShadow: '1px 1px 0 rgba(0, 0, 0, 0.12)',
               }}
             >
-              <span className="text-xs">{link.icon}</span>
-              <span className="text-[7px] font-bold leading-tight">{link.short}</span>
+              {link.icon}
             </Link>
           ))}
         </nav>
 
-        <div className="absolute right-4 top-1/2 -translate-y-1/2">
+        <div className="absolute right-3 top-1/2 -translate-y-1/2">
           <ThemeSwitcher />
         </div>
 
