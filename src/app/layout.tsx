@@ -3,6 +3,7 @@ import { Montserrat } from 'next/font/google'
 import './globals.css'
 import Nav from '@/components/nav'
 import Footer from '@/components/footer'
+import TiltMenuWrapper from '@/components/tilt-menu-wrapper'
 import { ThemeProvider } from '@/components/theme-provider'
 
 const montserrat = Montserrat({ subsets: ['latin'] })
@@ -41,11 +42,13 @@ export default function RootLayout({
     <html suppressHydrationWarning lang="en">
       <body suppressHydrationWarning className={montserrat.className}>
         <ThemeProvider attribute="class" disableTransitionOnChange>
-          <Nav />
-          <div className="text-foreground mx-auto w-[750px] max-w-full px-5 pt-28">
-            {children}
-            <Footer />
-          </div>
+          <TiltMenuWrapper>
+            <Nav />
+            <div className="text-foreground mx-auto w-[750px] max-w-full px-5 pt-28">
+              {children}
+              <Footer />
+            </div>
+          </TiltMenuWrapper>
         </ThemeProvider>
       </body>
     </html>
