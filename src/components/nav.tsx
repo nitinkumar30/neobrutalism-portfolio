@@ -33,7 +33,7 @@ export default function Nav() {
   const path = usePathname()
 
   return (
-    <div className="fixed top-5 left-0 z-50 flex w-full justify-center px-4">
+    <div className="fixed top-5 left-0 z-50 flex w-full justify-center px-4 max-lg:hidden">
       <nav className="text-main-foreground border-border shadow-shadow rounded-base bg-main font-base mx-auto flex items-center justify-center gap-1 border-2 px-3 py-2 text-xs sm:gap-2 sm:px-4 sm:text-sm md:text-base lg:gap-3 lg:px-5 lg:text-lg">
         <TooltipProvider>
           {links.map((link) => (

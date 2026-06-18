@@ -64,9 +64,12 @@ export default function TiltMenuWrapper({ children }: { children: React.ReactNod
 
   return (
     <>
-      {/* Paper-back nav panel — mobile only */}
+      {/* Paper-back nav panel — mobile only, hidden until open */}
       <div
-        className="fixed top-0 left-0 z-40 h-screen w-full hidden max-lg:flex flex-col"
+        className={clsx(
+          'fixed top-0 left-0 z-40 h-screen w-full flex-col lg:hidden',
+          open ? 'flex' : 'hidden',
+        )}
         style={{ backgroundColor: 'var(--main)' }}
       >
         <div className="flex items-center justify-between px-6 pt-5">
